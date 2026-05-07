@@ -4,13 +4,19 @@ import pkg from 'pg'
 const { Pool } = pkg
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
 app.use(express.json())
 
-const pool = new Pool({
-  connectionString: 'postgresql://postgres:postgres123@localhost:5432/college_discovery',
-})
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:postgres123@localhost:5432/college_discovery',
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+})
 
 app.get('/colleges', async (req, res) => {
   try {
