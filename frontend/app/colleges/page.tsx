@@ -27,8 +27,8 @@ export default function CollegesPage() {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    fetch('http://localhost:5000/states').then(r => r.json()).then(setStates)
-    fetch('http://localhost:5000/courses').then(r => r.json()).then(setCourses)
+    fetch('https://marvelous-transformation-production-8e9a.up.railway.app/states').then(r => r.json()).then(setStates)
+    fetch('https://marvelous-transformation-production-8e9a.up.railway.app/courses').then(r => r.json()).then(setCourses)
   }, [])
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function CollegesPage() {
     if (state) params.append('state', state)
     if (course) params.append('course', course)
 
-    fetch(`http://localhost:5000/colleges?${params}`)
+    fetch(`https://marvelous-transformation-production-8e9a.up.railway.app/colleges?${params}`)
       .then(r => r.json())
       .then(data => { setColleges(data); setLoading(false) })
       .catch(() => setLoading(false))

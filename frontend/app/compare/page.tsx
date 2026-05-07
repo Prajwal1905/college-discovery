@@ -22,7 +22,7 @@ export default function ComparePage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetch('http://localhost:5000/colleges')
+    fetch('https://marvelous-transformation-production-8e9a.up.railway.app/colleges')
       .then(r => r.json())
       .then(setAllColleges)
   }, [])
@@ -42,7 +42,7 @@ export default function ComparePage() {
     }
     setError('')
     setLoading(true)
-    const res = await fetch(`http://localhost:5000/compare?ids=${selected.join(',')}`)
+    const res = await fetch(`https://marvelous-transformation-production-8e9a.up.railway.app/compare?ids=${selected.join(',')}`)
     const data = await res.json()
     setCompared(data)
     setLoading(false)

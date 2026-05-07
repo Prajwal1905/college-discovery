@@ -22,7 +22,7 @@ export default function CollegeDetailPage() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch(`http://localhost:5000/colleges/${id}`)
+    fetch(`https://marvelous-transformation-production-8e9a.up.railway.app/colleges/${id}`)
       .then(r => r.json())
       .then(data => { setCollege(data); setLoading(false) })
       .catch(() => { setError(true); setLoading(false) })
