@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model College {
+  id          Int      @id @default(autoincrement())
+  name        String
+  location    String
+  state       String
+  fees        Int
+  rating      Float
+  courses     String[]
+  placement   Int
+  description String
+  image       String?
+  createdAt   DateTime @default(now())
+
+  comparisons CompareItem[]
+}
+
+model CompareItem {
+  id        Int     @id @default(autoincrement())
+  collegeId Int
+  college   College @relation(fields: [collegeId], references: [id])
+  sessionId String
+}
